@@ -1,7 +1,7 @@
 extends Node2D
 
 var what_stage = -1
-var animation_array = ["Intro", "Step2", "Step3", "Outro"]
+var animation_array = ["Intro", "Step2", "Step3", "Step4", "Outro"]
 var is_playing = false
 var intro_has_played = false
 
@@ -53,7 +53,7 @@ func stage_forward():
 func stage_back():
 	what_stage -= 1
 	if what_stage < 0:
-		what_stage = 2
+		what_stage = animation_array.size() - 1
 	switch_stage()
 
 func say_intro_play():
