@@ -3732,7 +3732,7 @@ margin_top = 16.0
 margin_right = 640.0
 margin_bottom = 213.0
 custom_fonts/font = SubResource( 29 )
-text = "Using a viewport as a texture creates one solid mask vs many small ones."
+text = "Rendering a viewport as a texture creates one solid mask vs many small ones."
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
