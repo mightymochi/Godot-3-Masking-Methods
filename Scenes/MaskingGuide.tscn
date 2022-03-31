@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://Shaders/circle_mask.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/GuideImages/BurstLines.png" type="Texture" id=2]
@@ -35,9 +35,12 @@
 [ext_resource path="res://Shaders/sprite_mask.gdshader" type="Shader" id=33]
 [ext_resource path="res://Assets/GuideImages/ArrowViewports.png" type="Texture" id=34]
 [ext_resource path="res://Assets/light_mask.png" type="Texture" id=35]
+[ext_resource path="res://Assets/GuideMaskImages/mixandmatchMask.png" type="Texture" id=36]
 [ext_resource path="res://Assets/GuideImages/LightDescLine.png" type="Texture" id=37]
 [ext_resource path="res://Assets/tile_reveal.png" type="Texture" id=38]
+[ext_resource path="res://Assets/GuideImages/mixandmatch.png" type="Texture" id=39]
 [ext_resource path="res://Assets/GuideMaskImages/ArrowMask2.png" type="Texture" id=40]
+[ext_resource path="res://Shaders/screen_mask.gdshader" type="Shader" id=41]
 [ext_resource path="res://Assets/GuideImages/LineBottomUp.png" type="Texture" id=43]
 [ext_resource path="res://Assets/GuideMaskImages/StarFilled_2.png" type="Texture" id=44]
 [ext_resource path="res://Assets/GuideImages/LineTopDown.png" type="Texture" id=45]
@@ -547,24 +550,36 @@ tracks/38/keys = {
 "values": [ false ]
 }
 tracks/39/type = "value"
-tracks/39/path = NodePath("OpeningGraphics/ControlImage:material:shader_param/cutoff_one")
+tracks/39/path = NodePath("BackBufferCopy:visible")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/imported = false
 tracks/39/enabled = true
 tracks/39/keys = {
-"times": PoolRealArray( 0, 1.2 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 1.068, 0.0 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
-tracks/40/type = "method"
-tracks/40/path = NodePath(".")
+tracks/40/type = "value"
+tracks/40/path = NodePath("OpeningGraphics/ControlImage:material:shader_param/cutoff_one")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/imported = false
 tracks/40/enabled = true
 tracks/40/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 1.068, 0.0 ]
+}
+tracks/41/type = "method"
+tracks/41/path = NodePath(".")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/keys = {
 "times": PoolRealArray( 4.1, 4.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -1161,7 +1176,7 @@ tracks/37/keys = {
 "values": [ false ]
 }
 tracks/38/type = "value"
-tracks/38/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/the_size")
+tracks/38/path = NodePath("BackBufferCopy:visible")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/imported = false
@@ -1170,10 +1185,10 @@ tracks/38/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ false ]
 }
 tracks/39/type = "value"
-tracks/39/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/wipe_axis_y")
+tracks/39/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/the_size")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
 tracks/39/imported = false
@@ -1182,10 +1197,10 @@ tracks/39/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ 1.0 ]
 }
 tracks/40/type = "value"
-tracks/40/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/rect_size")
+tracks/40/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/wipe_axis_y")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/imported = false
@@ -1194,10 +1209,10 @@ tracks/40/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -0.036 ]
+"values": [ false ]
 }
 tracks/41/type = "value"
-tracks/41/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_x")
+tracks/41/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/rect_size")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/imported = false
@@ -1206,10 +1221,10 @@ tracks/41/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -0.341 ]
+"values": [ -0.036 ]
 }
 tracks/42/type = "value"
-tracks/42/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_y")
+tracks/42/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_x")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
 tracks/42/imported = false
@@ -1218,10 +1233,10 @@ tracks/42/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -0.183 ]
+"values": [ -0.341 ]
 }
 tracks/43/type = "value"
-tracks/43/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/ratio_width")
+tracks/43/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_y")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/imported = false
@@ -1230,10 +1245,10 @@ tracks/43/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ -0.183 ]
 }
 tracks/44/type = "value"
-tracks/44/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/circle_size")
+tracks/44/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/ratio_width")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/imported = false
@@ -1242,10 +1257,10 @@ tracks/44/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.259 ]
+"values": [ 1.0 ]
 }
 tracks/45/type = "value"
-tracks/45/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/ratio_height")
+tracks/45/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/circle_size")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/imported = false
@@ -1254,10 +1269,10 @@ tracks/45/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.669 ]
+"values": [ 0.259 ]
 }
 tracks/46/type = "value"
-tracks/46/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_x")
+tracks/46/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/ratio_height")
 tracks/46/interp = 1
 tracks/46/loop_wrap = true
 tracks/46/imported = false
@@ -1266,10 +1281,10 @@ tracks/46/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.5 ]
+"values": [ 0.669 ]
 }
 tracks/47/type = "value"
-tracks/47/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_y")
+tracks/47/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_x")
 tracks/47/interp = 1
 tracks/47/loop_wrap = true
 tracks/47/imported = false
@@ -1281,7 +1296,7 @@ tracks/47/keys = {
 "values": [ 0.5 ]
 }
 tracks/48/type = "value"
-tracks/48/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_y")
+tracks/48/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_y")
 tracks/48/interp = 1
 tracks/48/loop_wrap = true
 tracks/48/imported = false
@@ -1290,10 +1305,10 @@ tracks/48/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -1.0 ]
+"values": [ 0.5 ]
 }
 tracks/49/type = "value"
-tracks/49/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_x")
+tracks/49/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_y")
 tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/imported = false
@@ -1302,10 +1317,10 @@ tracks/49/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -0.556 ]
+"values": [ -1.0 ]
 }
 tracks/50/type = "value"
-tracks/50/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/ratio_width")
+tracks/50/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_x")
 tracks/50/interp = 1
 tracks/50/loop_wrap = true
 tracks/50/imported = false
@@ -1314,10 +1329,10 @@ tracks/50/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.687 ]
+"values": [ -0.556 ]
 }
 tracks/51/type = "value"
-tracks/51/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/rect_size")
+tracks/51/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/ratio_width")
 tracks/51/interp = 1
 tracks/51/loop_wrap = true
 tracks/51/imported = false
@@ -1326,10 +1341,10 @@ tracks/51/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 3.055 ]
+"values": [ 0.687 ]
 }
 tracks/52/type = "value"
-tracks/52/path = NodePath("LightSection/Light2D/Light2D:position")
+tracks/52/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/rect_size")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/imported = false
@@ -1338,10 +1353,10 @@ tracks/52/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 172, 132 ) ]
+"values": [ 3.055 ]
 }
 tracks/53/type = "value"
-tracks/53/path = NodePath("LightSection/LightAsTexture/Light2D:position")
+tracks/53/path = NodePath("LightSection/Light2D/Light2D:position")
 tracks/53/interp = 1
 tracks/53/loop_wrap = true
 tracks/53/imported = false
@@ -1350,10 +1365,10 @@ tracks/53/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 260, 176 ) ]
+"values": [ Vector2( 172, 132 ) ]
 }
 tracks/54/type = "value"
-tracks/54/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_two")
+tracks/54/path = NodePath("LightSection/LightAsTexture/Light2D:position")
 tracks/54/interp = 1
 tracks/54/loop_wrap = true
 tracks/54/imported = false
@@ -1362,10 +1377,10 @@ tracks/54/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.637 ]
+"values": [ Vector2( 260, 176 ) ]
 }
 tracks/55/type = "value"
-tracks/55/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_one")
+tracks/55/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_two")
 tracks/55/interp = 1
 tracks/55/loop_wrap = true
 tracks/55/imported = false
@@ -1374,10 +1389,10 @@ tracks/55/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.301 ]
+"values": [ 0.637 ]
 }
 tracks/56/type = "value"
-tracks/56/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:visible")
+tracks/56/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_one")
 tracks/56/interp = 1
 tracks/56/loop_wrap = true
 tracks/56/imported = false
@@ -1386,10 +1401,10 @@ tracks/56/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ 1.301 ]
 }
 tracks/57/type = "value"
-tracks/57/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:visible")
+tracks/57/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:visible")
 tracks/57/interp = 1
 tracks/57/loop_wrap = true
 tracks/57/imported = false
@@ -1401,7 +1416,7 @@ tracks/57/keys = {
 "values": [ false ]
 }
 tracks/58/type = "value"
-tracks/58/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:visible")
+tracks/58/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:visible")
 tracks/58/interp = 1
 tracks/58/loop_wrap = true
 tracks/58/imported = false
@@ -1410,10 +1425,10 @@ tracks/58/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/59/type = "value"
-tracks/59/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:position")
+tracks/59/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:visible")
 tracks/59/interp = 1
 tracks/59/loop_wrap = true
 tracks/59/imported = false
@@ -1422,10 +1437,10 @@ tracks/59/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 322, 150 ) ]
+"values": [ true ]
 }
 tracks/60/type = "value"
-tracks/60/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:position")
+tracks/60/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:position")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/imported = false
@@ -1434,10 +1449,10 @@ tracks/60/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 150, 150 ) ]
+"values": [ Vector2( 322, 150 ) ]
 }
 tracks/61/type = "value"
-tracks/61/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:position")
+tracks/61/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:position")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
 tracks/61/imported = false
@@ -1446,10 +1461,10 @@ tracks/61/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 250, 95 ) ]
+"values": [ Vector2( 150, 150 ) ]
 }
 tracks/62/type = "value"
-tracks/62/path = NodePath("ViewPortSection/ViewLightMask2/SpriteViewPortRender:material:shader_param/the_size")
+tracks/62/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:position")
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
 tracks/62/imported = false
@@ -1458,10 +1473,10 @@ tracks/62/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ Vector2( 250, 95 ) ]
 }
 tracks/63/type = "value"
-tracks/63/path = NodePath("ControlNodeSection/ControlNode/Control:margin_left")
+tracks/63/path = NodePath("ViewPortSection/ViewLightMask2/SpriteViewPortRender:material:shader_param/the_size")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
 tracks/63/imported = false
@@ -1473,7 +1488,7 @@ tracks/63/keys = {
 "values": [ 1.0 ]
 }
 tracks/64/type = "value"
-tracks/64/path = NodePath("ControlNodeSection/ControlNode/Control:margin_top")
+tracks/64/path = NodePath("ControlNodeSection/ControlNode/Control:margin_left")
 tracks/64/interp = 1
 tracks/64/loop_wrap = true
 tracks/64/imported = false
@@ -1482,10 +1497,10 @@ tracks/64/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 26.0 ]
+"values": [ 1.0 ]
 }
 tracks/65/type = "value"
-tracks/65/path = NodePath("ControlNodeSection/ControlNode/Control:margin_right")
+tracks/65/path = NodePath("ControlNodeSection/ControlNode/Control:margin_top")
 tracks/65/interp = 1
 tracks/65/loop_wrap = true
 tracks/65/imported = false
@@ -1494,10 +1509,10 @@ tracks/65/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 154.0 ]
+"values": [ 26.0 ]
 }
 tracks/66/type = "value"
-tracks/66/path = NodePath("ControlNodeSection/ControlNode/Control:margin_bottom")
+tracks/66/path = NodePath("ControlNodeSection/ControlNode/Control:margin_right")
 tracks/66/interp = 1
 tracks/66/loop_wrap = true
 tracks/66/imported = false
@@ -1506,10 +1521,10 @@ tracks/66/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 131.0 ]
+"values": [ 154.0 ]
 }
 tracks/67/type = "value"
-tracks/67/path = NodePath("OpeningGraphics/BurstFilled:material:shader_param/cutoff_one")
+tracks/67/path = NodePath("ControlNodeSection/ControlNode/Control:margin_bottom")
 tracks/67/interp = 1
 tracks/67/loop_wrap = true
 tracks/67/imported = false
@@ -1518,10 +1533,10 @@ tracks/67/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ 131.0 ]
 }
 tracks/68/type = "value"
-tracks/68/path = NodePath("OpeningGraphics/ControlImage:material:shader_param/cutoff_one")
+tracks/68/path = NodePath("OpeningGraphics/BurstFilled:material:shader_param/cutoff_one")
 tracks/68/interp = 1
 tracks/68/loop_wrap = true
 tracks/68/imported = false
@@ -1530,7 +1545,79 @@ tracks/68/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ 0.0 ]
+}
+tracks/69/type = "value"
+tracks/69/path = NodePath("OpeningGraphics/ControlImage:material:shader_param/cutoff_one")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/imported = false
+tracks/69/enabled = true
+tracks/69/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ 1.068 ]
+}
+tracks/70/type = "value"
+tracks/70/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot3:position")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -86.7199, -197.678 ) ]
+}
+tracks/71/type = "value"
+tracks/71/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot2:position")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 101.37, -93.4083 ) ]
+}
+tracks/72/type = "value"
+tracks/72/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot:position")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 87.0161, -225.817 ) ]
+}
+tracks/73/type = "value"
+tracks/73/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D:material:shader_param/invert_mask")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/74/type = "value"
+tracks/74/path = NodePath("ControlNodeSection/Mixandmatch:material:shader_param/cutoff_one")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.422 ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -1609,43 +1696,43 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/the_size")
+tracks/6/path = NodePath("BackBufferCopy:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 1.9, 2.6, 3.4, 4.1, 4.6, 5.4 ),
-"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ),
-"update": 0,
-"values": [ 0.5, 0.5, 1.0, 0.0, 1.0, 0.0, 0.5 ]
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/wipe_axis_y")
+tracks/7/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/the_size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 3.4, 4.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
+"times": PoolRealArray( 0, 1.9, 2.6, 3.4, 4.1, 4.6, 5.4 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.5, 0.5, 1.0, 0.0, 1.0, 0.0, 0.5 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/rect_size")
+tracks/8/path = NodePath("ShaderSection/Basic/TextureToMask:material:shader_param/wipe_axis_y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 5.4, 6.1, 6.9, 7.6, 8.4 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 0.36, 0.36, -0.036, 0.36, 0.36, 0.36 ]
+"times": PoolRealArray( 0, 3.4, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_x")
+tracks/9/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/rect_size")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -1654,10 +1741,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 5.4, 6.1, 6.9, 7.6, 8.4 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.0, 0.0, 0.0, -0.341, 0.082, 0.0 ]
+"values": [ 0.36, 0.36, -0.036, 0.36, 0.36, 0.36 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_y")
+tracks/10/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_x")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -1666,10 +1753,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 5.4, 6.1, 6.9, 7.6, 8.4 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.0, 0.0, 0.0, -0.183, 0.183, 0.0 ]
+"values": [ 0.0, 0.0, 0.0, -0.341, 0.082, 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/ratio_width")
+tracks/11/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/location_y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -1678,34 +1765,34 @@ tracks/11/keys = {
 "times": PoolRealArray( 0, 5.4, 6.1, 6.9, 7.6, 8.4 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 1.0, 1.0, 1.0, 1.0, 0.452, 1.0 ]
+"values": [ 0.0, 0.0, 0.0, -0.183, 0.183, 0.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/invert_mask")
+tracks/12/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/ratio_width")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 6.9, 7.2, 8.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, true, false ]
+"times": PoolRealArray( 0, 5.4, 6.1, 6.9, 7.6, 8.4 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 1.0, 1.0, 1.0, 1.0, 0.452, 1.0 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/circle_size")
+tracks/13/path = NodePath("ShaderSection/Rectangular/TextureToMask:material:shader_param/invert_mask")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 8.6, 9.4, 10.1, 11, 12 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 0.259, 0.259, 0.902, 0.248, 0.248, 0.259 ]
+"times": PoolRealArray( 0, 6.9, 7.2, 8.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, false ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/size_ratio")
+tracks/14/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/circle_size")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -1714,10 +1801,10 @@ tracks/14/keys = {
 "times": PoolRealArray( 0, 8.6, 9.4, 10.1, 11, 12 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.669, 0.669, 0.669, 1.2, 0.669, 0.669 ]
+"values": [ 0.259, 0.259, 0.902, 0.248, 0.248, 0.259 ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_x")
+tracks/15/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/size_ratio")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -1726,10 +1813,10 @@ tracks/15/keys = {
 "times": PoolRealArray( 0, 8.6, 9.4, 10.1, 11, 12 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.5, 0.5, 0.5, -0.122, 1.186, 0.5 ]
+"values": [ 0.669, 0.669, 0.669, 1.2, 0.669, 0.669 ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_y")
+tracks/16/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_x")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -1738,34 +1825,34 @@ tracks/16/keys = {
 "times": PoolRealArray( 0, 8.6, 9.4, 10.1, 11, 12 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.5, 0.5, 0.5, 0.088, 0.966, 0.5 ]
+"values": [ 0.5, 0.5, 0.5, -0.122, 1.186, 0.5 ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/invert_mask")
+tracks/17/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/location_y")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 10.3, 11.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
+"times": PoolRealArray( 0, 8.6, 9.4, 10.1, 11, 12 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 0.5, 0.5, 0.5, 0.088, 0.966, 0.5 ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/rect_size")
+tracks/18/path = NodePath("ShaderSection/Round/TextureToMask:material:shader_param/invert_mask")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 0, 12, 12.9, 13.7, 14.6, 15.5 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 0.601, 0.601, 3.055, 0.342, 0.433, 0.601 ]
+"times": PoolRealArray( 0, 10.3, 11.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/ratio_width")
+tracks/19/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/rect_size")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -1774,10 +1861,10 @@ tracks/19/keys = {
 "times": PoolRealArray( 0, 12, 12.9, 13.7, 14.6, 15.5 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.687, 0.687, 0.687, 0.687, 1.163, 0.687 ]
+"values": [ 0.601, 0.601, 3.055, 0.342, 0.433, 0.601 ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_x")
+tracks/20/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/ratio_width")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -1786,10 +1873,10 @@ tracks/20/keys = {
 "times": PoolRealArray( 0, 12, 12.9, 13.7, 14.6, 15.5 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.276, 0.276, -0.556, 0.029, 0.523, 0.276 ]
+"values": [ 0.687, 0.687, 0.687, 0.687, 1.163, 0.687 ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_y")
+tracks/21/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_x")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -1798,34 +1885,34 @@ tracks/21/keys = {
 "times": PoolRealArray( 0, 12, 12.9, 13.7, 14.6, 15.5 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.184, 0.184, -1.0, 0.055, 0.546, 0.184 ]
+"values": [ 0.276, 0.276, -0.556, 0.029, 0.523, 0.276 ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/invert_mask")
+tracks/22/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/location_y")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
 tracks/22/enabled = true
 tracks/22/keys = {
-"times": PoolRealArray( 0, 13.8, 15.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
+"times": PoolRealArray( 0, 12, 12.9, 13.7, 14.6, 15.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 0.184, 0.184, -1.0, 0.055, 0.546, 0.184 ]
 }
 tracks/23/type = "value"
-tracks/23/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_one")
+tracks/23/path = NodePath("ShaderSection/Sprite/TextureToMask:material:shader_param/invert_mask")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/imported = false
 tracks/23/enabled = true
 tracks/23/keys = {
-"times": PoolRealArray( 0, 15.7, 17.6, 18.6, 19.8 ),
-"transitions": PoolRealArray( -2, -2, -2, 1, 0.5 ),
-"update": 0,
-"values": [ 0.229, 0.229, 1.301, 1.301, 0.229 ]
+"times": PoolRealArray( 0, 13.8, 15.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 tracks/24/type = "value"
-tracks/24/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_two")
+tracks/24/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_one")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/imported = false
@@ -1834,63 +1921,75 @@ tracks/24/keys = {
 "times": PoolRealArray( 0, 15.7, 17.6, 18.6, 19.8 ),
 "transitions": PoolRealArray( -2, -2, -2, 1, 0.5 ),
 "update": 0,
-"values": [ 0.0, 0.0, 0.637, -0.01, 0.0 ]
+"values": [ 0.229, 0.229, 1.301, 1.301, 0.229 ]
 }
 tracks/25/type = "value"
-tracks/25/path = NodePath("LightSection/Light2D/Light2D:position")
+tracks/25/path = NodePath("ShaderSection/Transition/TextureToMask:material:shader_param/cutoff_two")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/imported = false
 tracks/25/enabled = true
 tracks/25/keys = {
-"times": PoolRealArray( 0, 20.1, 20.8, 21.5, 22.1 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"times": PoolRealArray( 0, 15.7, 17.6, 18.6, 19.8 ),
+"transitions": PoolRealArray( -2, -2, -2, 1, 0.5 ),
 "update": 0,
-"values": [ Vector2( 172, 132 ), Vector2( 172, 132 ), Vector2( 71, 186 ), Vector2( 314, 21 ), Vector2( 172, 132 ) ]
+"values": [ 0.0, 0.0, 0.637, -0.01, 0.0 ]
 }
 tracks/26/type = "value"
-tracks/26/path = NodePath("LightSection/LightAsTexture/Light2D:position")
+tracks/26/path = NodePath("LightSection/Light2D/Light2D:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/imported = false
 tracks/26/enabled = true
 tracks/26/keys = {
-"times": PoolRealArray( 0, 22.3, 23.1, 23.8, 24.5 ),
+"times": PoolRealArray( 0, 20.1, 20.8, 21.5, 22.1 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 174, 135 ), Vector2( 174, 135 ), Vector2( 260, 176 ), Vector2( 87, 83 ), Vector2( 174, 135 ) ]
+"values": [ Vector2( 172, 132 ), Vector2( 172, 132 ), Vector2( 71, 186 ), Vector2( 314, 21 ), Vector2( 172, 132 ) ]
 }
 tracks/27/type = "value"
-tracks/27/path = NodePath("ColorRect:material:shader_param/cutoff_one")
+tracks/27/path = NodePath("LightSection/LightAsTexture/Light2D:position")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/imported = false
 tracks/27/enabled = true
 tracks/27/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"times": PoolRealArray( 0, 22.3, 23.1, 23.8, 24.5 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ -0.01, 1.238 ]
+"values": [ Vector2( 174, 135 ), Vector2( 174, 135 ), Vector2( 260, 176 ), Vector2( 87, 83 ), Vector2( 174, 135 ) ]
 }
 tracks/28/type = "value"
-tracks/28/path = NodePath("ColorRect:material:shader_param/cutoff_two")
+tracks/28/path = NodePath("ColorRect:material:shader_param/cutoff_one")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
 tracks/28/enabled = true
 tracks/28/keys = {
-"times": PoolRealArray( 0, 0.4, 1.6 ),
-"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
 "update": 0,
-"values": [ 0.0, 0.0, 1.178 ]
+"values": [ -0.01, 1.238 ]
 }
 tracks/29/type = "value"
-tracks/29/path = NodePath("ColorRect:visible")
+tracks/29/path = NodePath("ColorRect:material:shader_param/cutoff_two")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/imported = false
 tracks/29/enabled = true
 tracks/29/keys = {
+"times": PoolRealArray( 0, 0.4, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.178 ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("ColorRect:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -1899,7 +1998,7 @@ tracks/29/keys = {
 
 [sub_resource type="Animation" id=50]
 resource_name = "Step3"
-length = 16.0
+length = 14.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("OpeningGraphics:visible")
 tracks/0/interp = 1
@@ -1958,6 +2057,262 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PolygonSection:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("BackBufferCopy:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, true, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, false, false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, false, true, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1.8, 2.4, 4.1, 11.7, 12.3, 14 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 100, 50 ), Vector2( 100, 50 ), Vector2( 322, 150 ), Vector2( 100, 50 ), Vector2( 100, 50 ), Vector2( 322, 150 ), Vector2( 100, 50 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1.8, 3, 3.5, 4.1, 11.7, 12.9, 13.4, 14 ),
+"transitions": PoolRealArray( 1, 1, -2, -2, -2, 1, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 25, 95 ), Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 25, 95 ), Vector2( 250, 95 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ViewPortSection/ViewLightMask2/SpriteViewPortRender:material:shader_param/the_size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 4.3, 4.8, 5.3, 6.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 0.534, 0.534, 1.0, 0.0, 0.534 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("ColorRect:material:shader_param/cutoff_one")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ -0.01, 1.238 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("ColorRect:material:shader_param/cutoff_two")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.4, 1.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.178 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ColorRect:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 6.6, 8.6, 11 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -49.2512, -122.704 ), Vector2( -49.2512, -122.704 ), Vector2( 87.0161, -225.817 ), Vector2( -49.2512, -122.704 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot2:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 6.6, 8.6, 11 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -147.839, -206.014 ), Vector2( -147.839, -206.014 ), Vector2( 101.37, -93.4083 ), Vector2( -147.839, -206.014 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D/Godot3:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 6.6, 8.6, 11 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 96.6851, -147.353 ), Vector2( 96.6851, -147.353 ), Vector2( -86.7199, -197.678 ), Vector2( 96.6851, -147.353 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("BackBufferCopy/BackBuff/BackBufferCopy/Node2D:material:shader_param/invert_mask")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 8, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("BackBufferCopy/BackBuff2/BackBufferCopy/Sprite:material:shader_param/invert_mask")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0, 12.6, 13.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "Step4"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("OpeningGraphics:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShaderSection:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LightSection:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ViewPortSection:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ControlNodeSection:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
 "values": [ true ]
 }
 tracks/5/type = "value"
@@ -1973,172 +2328,124 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:visible")
+tracks/6/path = NodePath("BackBufferCopy:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, true, true, true, true ]
+"values": [ false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot2:visible")
+tracks/7/path = NodePath("ControlNodeSection/ControlNode/Control:margin_left")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, false, false, true ]
+"times": PoolRealArray( 0, 1.6, 2.8, 4, 5.1, 6.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 1.0, 1.0, 1.0, 1.0, 198.0, 1.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:visible")
+tracks/8/path = NodePath("ControlNodeSection/ControlNode/Control:margin_top")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 1.8, 2.4, 3, 3.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, false, true, true ]
+"times": PoolRealArray( 0, 1.6, 2.8, 4, 5.1, 6.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 26.0, 26.0, 26.0, 26.0, 134.0, 26.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot:position")
+tracks/9/path = NodePath("ControlNodeSection/ControlNode/Control:margin_right")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 1.8, 2.4, 4.1 ),
-"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"times": PoolRealArray( 0, 1.6, 2.8, 4, 6.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 100, 50 ), Vector2( 100, 50 ), Vector2( 322, 150 ), Vector2( 100, 50 ) ]
+"values": [ 338.0, 338.0, 154.0, 338.0, 338.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ViewPortSection/ViewLightMask2/Viewport/Godot3:position")
+tracks/10/path = NodePath("ControlNodeSection/ControlNode/Control:margin_bottom")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 1.8, 3, 3.5, 4.1 ),
-"transitions": PoolRealArray( 1, 1, -2, -2, -2 ),
+"times": PoolRealArray( 0, 1.6, 2.8, 4, 5.1, 6.2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 250, 95 ), Vector2( 25, 95 ), Vector2( 250, 95 ) ]
+"values": [ 240.0, 240.0, 131.0, 240.0, 240.0, 240.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("ViewPortSection/ViewLightMask2/SpriteViewPortRender:material:shader_param/the_size")
+tracks/11/path = NodePath("PolygonSection/Polygon/Polygon2D:polygon")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 4.3, 4.8, 5.3, 6.2 ),
+"times": PoolRealArray( 0, 6.5, 8, 9.5, 11.1 ),
 "transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.534, 0.534, 1.0, 0.0, 0.534 ]
+"values": [ PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 ), PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 ), PoolVector2Array( 73, 80, -19, -1, 121, 14, 195, 5, 203, 53, 370, 0, 334, 53, 385, 124, 328, 180, 229, 99, 233, 186, 212, 259, 134, 192, 54, 247, 83, 153, -42, 117 ), PoolVector2Array( 43.9677, 57.0551, 134, 73, 145, 41, 199, 55, 238, 78, 284, 83, 301, 109, 310, 136, 297, 164, 266, 194, 208, 181, 183, 198, 149, 167, 135, 129, 71, 146, 89, 100 ), PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("ControlNodeSection/ControlNode/Control:margin_left")
+tracks/12/path = NodePath("ColorRect:material:shader_param/cutoff_one")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 6.4, 7.6, 8.8, 9.9, 11 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 1.0, 1.0, 1.0, 1.0, 198.0, 1.0 ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("ControlNodeSection/ControlNode/Control:margin_top")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0, 6.4, 7.6, 8.8, 9.9, 11 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 26.0, 26.0, 26.0, 26.0, 134.0, 26.0 ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("ControlNodeSection/ControlNode/Control:margin_right")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0, 6.4, 7.6, 8.8, 11 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 338.0, 338.0, 154.0, 338.0, 338.0 ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("ControlNodeSection/ControlNode/Control:margin_bottom")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0, 6.4, 7.6, 8.8, 9.9, 11 ),
-"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 240.0, 240.0, 131.0, 240.0, 240.0, 240.0 ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("PolygonSection/Polygon/Polygon2D:polygon")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 11.3, 12.8, 14.3, 15.9 ),
-"transitions": PoolRealArray( -2, -2, -2, -2 ),
-"update": 0,
-"values": [ PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 ), PoolVector2Array( 73, 80, -19, -1, 121, 14, 195, 5, 203, 53, 370, 0, 334, 53, 385, 124, 328, 180, 229, 99, 233, 186, 212, 259, 134, 192, 54, 247, 83, 153, -42, 117 ), PoolVector2Array( 43.9677, 57.0551, 134, 73, 145, 41, 199, 55, 238, 78, 284, 83, 301, 109, 310, 136, 297, 164, 266, 194, 208, 181, 183, 198, 149, 167, 135, 129, 71, 146, 89, 100 ), PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 ) ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("ColorRect:material:shader_param/cutoff_one")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.5, 0.5 ),
 "update": 0,
 "values": [ -0.01, 1.238 ]
 }
-tracks/18/type = "value"
-tracks/18/path = NodePath("ColorRect:material:shader_param/cutoff_two")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
+tracks/13/type = "value"
+tracks/13/path = NodePath("ColorRect:material:shader_param/cutoff_two")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
 "times": PoolRealArray( 0, 0.4, 1.6 ),
 "transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
 "update": 0,
 "values": [ 0.0, 0.0, 1.178 ]
 }
-tracks/19/type = "value"
-tracks/19/path = NodePath("ColorRect:visible")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
+tracks/14/type = "value"
+tracks/14/path = NodePath("ColorRect:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ControlNodeSection/Mixandmatch:material:shader_param/cutoff_one")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 10.9, 14 ),
+"transitions": PoolRealArray( 0.5, -2, -2 ),
+"update": 0,
+"values": [ 1.009, 1.009, 0.422 ]
 }
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -2539,10 +2846,30 @@ shader_param/wipe_axis_y = false
 [sub_resource type="ViewportTexture" id=41]
 viewport_path = NodePath("ViewPortSection/ViewLightMask2/Viewport")
 
+[sub_resource type="ShaderMaterial" id=59]
+shader = ExtResource( 41 )
+shader_param/invert_mask = true
+
+[sub_resource type="ShaderMaterial" id=61]
+shader = ExtResource( 41 )
+shader_param/invert_mask = false
+
+[sub_resource type="ViewportTexture" id=62]
+viewport_path = NodePath("ViewPortSection/ViewLightMask2/Viewport")
+
+[sub_resource type="ShaderMaterial" id=64]
+shader = ExtResource( 67 )
+shader_param/cutoff_one = 0.422
+shader_param/cutoff_two = 0.0
+shader_param/smooth_size = 0.057
+shader_param/invert_mask = true
+shader_param/masking_color = Color( 1, 1, 1, 1 )
+shader_param/mask = ExtResource( 36 )
+
 [sub_resource type="ShaderMaterial" id=51]
 shader = ExtResource( 67 )
-shader_param/cutoff_one = -0.01
-shader_param/cutoff_two = 0.0
+shader_param/cutoff_one = 1.238
+shader_param/cutoff_two = 1.178
 shader_param/smooth_size = 0.17
 shader_param/invert_mask = false
 shader_param/masking_color = Color( 0, 0, 0, 1 )
@@ -2557,6 +2884,7 @@ anims/Outro = SubResource( 55 )
 anims/RESET = SubResource( 15 )
 anims/Step2 = SubResource( 49 )
 anims/Step3 = SubResource( 50 )
+anims/Step4 = SubResource( 63 )
 
 [node name="Paper" type="Sprite" parent="."]
 position = Vector2( 962, 538 )
@@ -2740,18 +3068,18 @@ texture = ExtResource( 26 )
 [node name="OpeningTextShadow" type="Label" parent="OpeningGraphics"]
 modulate = Color( 1, 1, 1, 0.32 )
 material = SubResource( 48 )
-margin_left = 1396.0
+margin_left = 1384.0
 margin_top = 51.0
 margin_right = 1867.0
-margin_bottom = 466.0
+margin_bottom = 488.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 29 )
-text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications.
-Sources of Note:
+text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
+reddit.com/user/eatshitnosleep69
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -2763,7 +3091,7 @@ __meta__ = {
 
 [node name="OpeningText" type="Label" parent="OpeningGraphics"]
 material = SubResource( 48 )
-margin_left = 1417.0
+margin_left = 1379.0
 margin_top = 49.0
 margin_right = 1865.0
 margin_bottom = 464.0
@@ -2771,10 +3099,10 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 custom_fonts/font = SubResource( 29 )
-text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications.
-Sources of Note:
+text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
+reddit.com/user/eatshitnosleep69
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -3111,7 +3439,7 @@ visible = false
 [node name="ViewTitle" type="ColorRect" parent="ViewPortSection"]
 margin_top = -1.0
 margin_right = 100.0
-margin_bottom = 997.0
+margin_bottom = 1090.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3256,15 +3584,198 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Desc3" type="Label" parent="ViewPortSection"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 1104.0
+margin_top = 756.0
+margin_right = 1719.0
+margin_bottom = 1037.0
+custom_fonts/font = SubResource( 29 )
+text = "A technique created by eat****nosleep69 on reddit: By using a BackBufferCopy node with the Copy Mode set to Viewport, you can apply a shader that will turn the solid pixels of a texture into a mask that hides pixels on any children below the mask node that also reside within the BackBufferCopy node. "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DividingLine" type="Line2D" parent="ViewPortSection"]
+position = Vector2( -1360, 0 )
+points = PoolVector2Array( 2314, 22, 2314, 1039 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="BackBufferCopy" type="Node2D" parent="."]
+visible = false
+position = Vector2( 910, 0 )
+
+[node name="BackBuffTitle" type="ColorRect" parent="BackBufferCopy"]
+margin_left = 910.0
+margin_top = -1.0
+margin_right = 1010.0
+margin_bottom = 1091.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titles" type="Label" parent="BackBufferCopy/BackBuffTitle"]
+margin_left = 90.0
+margin_top = 34.0
+margin_right = 356.0
+margin_bottom = 113.0
+rect_rotation = 90.0
+theme = SubResource( 53 )
+custom_fonts/font = SubResource( 54 )
+text = "BACKBUFFERCOPY"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBuffDescLine" type="Sprite" parent="BackBufferCopy"]
+position = Vector2( 501.5, 726 )
+texture = ExtResource( 29 )
+
+[node name="BackBuff" type="Node2D" parent="BackBufferCopy"]
+position = Vector2( 177, 136 )
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="BackBufferCopy/BackBuff"]
+position = Vector2( 165, 78 )
+copy_mode = 2
+rect = Rect2( 0, 0, 0, 0 )
+
+[node name="TextureToMask" type="Sprite" parent="BackBufferCopy/BackBuff/BackBufferCopy"]
+position = Vector2( -165, -92 )
+texture = ExtResource( 85 )
+centered = false
+
+[node name="Node2D" type="Node2D" parent="BackBufferCopy/BackBuff/BackBufferCopy"]
+material = SubResource( 59 )
+position = Vector2( -10, 158 )
+rotation = 0.160567
+
+[node name="Godot" type="Sprite" parent="BackBufferCopy/BackBuff/BackBufferCopy/Node2D"]
+use_parent_material = true
+position = Vector2( 87.0161, -225.817 )
+scale = Vector2( 0.251788, 0.251788 )
+texture = ExtResource( 49 )
+
+[node name="Godot2" type="Sprite" parent="BackBufferCopy/BackBuff/BackBufferCopy/Node2D"]
+use_parent_material = true
+position = Vector2( 101.37, -93.4083 )
+scale = Vector2( 0.481166, 0.481166 )
+texture = ExtResource( 49 )
+
+[node name="Godot3" type="Sprite" parent="BackBufferCopy/BackBuff/BackBufferCopy/Node2D"]
+use_parent_material = true
+position = Vector2( -86.7199, -197.678 )
+scale = Vector2( 0.719386, 0.719386 )
+texture = ExtResource( 49 )
+
+[node name="Border" type="Sprite" parent="BackBufferCopy/BackBuff"]
+position = Vector2( 0, -14 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Desc" type="Label" parent="BackBufferCopy/BackBuff"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 370.0
+margin_top = -3.0
+margin_right = 656.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 29 )
+text = "Applying a shader to children within the BackBufferCopy will mask any of the other children below."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BackBufferCopy/BackBuff"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = -55.0
+margin_right = 235.0
+margin_bottom = -18.0
+custom_fonts/font = SubResource( 29 )
+text = "individual sprites"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBuff2" type="Node2D" parent="BackBufferCopy"]
+position = Vector2( 177, 466 )
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="BackBufferCopy/BackBuff2"]
+position = Vector2( 165, 78 )
+copy_mode = 2
+rect = Rect2( 0, 0, 0, 0 )
+
+[node name="TextureToMask" type="Sprite" parent="BackBufferCopy/BackBuff2/BackBufferCopy"]
+position = Vector2( -165, -92 )
+texture = ExtResource( 85 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="BackBufferCopy/BackBuff2/BackBufferCopy"]
+material = SubResource( 61 )
+position = Vector2( 5, 16 )
+texture = SubResource( 62 )
+
+[node name="Border" type="Sprite" parent="BackBufferCopy/BackBuff2"]
+position = Vector2( 0, -14 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Desc" type="Label" parent="BackBufferCopy/BackBuff2"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 370.0
+margin_top = 16.0
+margin_right = 640.0
+margin_bottom = 213.0
+custom_fonts/font = SubResource( 29 )
+text = "Using a viewport as a texture creates one solid mask vs many small ones."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BackBufferCopy/BackBuff2"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = -55.0
+margin_right = 235.0
+margin_bottom = -18.0
+custom_fonts/font = SubResource( 29 )
+text = "Viewport Sprite"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc2" type="Label" parent="BackBufferCopy"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 189.0
+margin_top = 756.0
+margin_right = 804.0
+margin_bottom = 953.0
+custom_fonts/font = SubResource( 29 )
+text = "Viewports are trickier (error prone) but allow you to apply groups of effects to masks and masks to groups of items. Quantum Code teaches this method in this video: https://youtu.be/2ZD82i71-90"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ControlNodeSection" type="Node2D" parent="."]
 visible = false
 
+[node name="DividingLine2" type="Line2D" parent="ControlNodeSection"]
+position = Vector2( -1360, 0 )
+points = PoolVector2Array( 2314, 22, 2314, 514 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
 [node name="ControlTitle" type="ColorRect" parent="ControlNodeSection"]
-margin_left = 997.0
-margin_top = 100.0
-margin_right = 1097.0
-margin_bottom = 1198.0
-rect_rotation = -90.0
+margin_top = -1.0
+margin_right = 100.0
+margin_bottom = 515.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3285,7 +3796,7 @@ __meta__ = {
 }
 
 [node name="ControlNode" type="Node2D" parent="ControlNodeSection"]
-position = Vector2( 1087, 165 )
+position = Vector2( 177, 97 )
 
 [node name="Border" type="Sprite" parent="ControlNodeSection/ControlNode"]
 position = Vector2( 0, 25 )
@@ -3295,9 +3806,9 @@ centered = false
 [node name="Desc" type="Label" parent="ControlNodeSection/ControlNode"]
 modulate = Color( 0, 0, 0, 1 )
 margin_left = 370.0
-margin_top = 51.0
-margin_right = 764.0
-margin_bottom = 251.0
+margin_top = 36.0
+margin_right = 707.0
+margin_bottom = 236.0
 custom_fonts/font = SubResource( 29 )
 text = "There is a boolean option to Clip Content. Changing Margin changes the mask, but changing left or top margin will move content."
 autowrap = true
@@ -3347,21 +3858,19 @@ position = Vector2( 168, 107 )
 scale = Vector2( 0.515306, 0.515306 )
 texture = ExtResource( 49 )
 
-[node name="DividingLine2" type="Line2D" parent="ControlNodeSection"]
-position = Vector2( -1316, -16 )
-points = PoolVector2Array( 2314, 22, 2314, 1011 )
-width = 2.0
-default_color = Color( 0, 0, 0, 1 )
+[node name="Mixandmatch" type="Sprite" parent="ControlNodeSection"]
+material = SubResource( 64 )
+position = Vector2( 965, 760 )
+texture = ExtResource( 39 )
 
 [node name="PolygonSection" type="Node2D" parent="."]
 visible = false
 
 [node name="PolygonTitle" type="ColorRect" parent="PolygonSection"]
-margin_left = 997.0
-margin_top = 572.0
-margin_right = 1097.0
-margin_bottom = 1670.0
-rect_rotation = -90.0
+margin_left = 1820.0
+margin_top = -1.0
+margin_right = 1920.0
+margin_bottom = 514.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3382,7 +3891,7 @@ __meta__ = {
 }
 
 [node name="Polygon" type="Node2D" parent="PolygonSection"]
-position = Vector2( 1088, 642 )
+position = Vector2( 1088, 89 )
 
 [node name="Border2" type="Sprite" parent="PolygonSection/Polygon"]
 position = Vector2( -1, 33 )
@@ -3393,7 +3902,7 @@ centered = false
 modulate = Color( 0, 0, 0, 1 )
 margin_left = 370.0
 margin_top = 95.0
-margin_right = 770.0
+margin_right = 671.0
 margin_bottom = 261.0
 custom_fonts/font = SubResource( 29 )
 text = "Textures can be clipped to the bounds of a polygon. "
@@ -3423,15 +3932,15 @@ texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 )
 
 [node name="ViewDescLine2" type="Sprite" parent="PolygonSection"]
-position = Vector2( 998.5, 995 )
+position = Vector2( 998.5, 515 )
 scale = Vector2( 3.10957, 1 )
 texture = ExtResource( 29 )
 
 [node name="Desc3" type="Label" parent="PolygonSection"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 652.0
+margin_left = 620.0
 margin_top = 1023.0
-margin_right = 1353.0
+margin_right = 1321.0
 margin_bottom = 1060.0
 custom_fonts/font = SubResource( 29 )
 text = "Did I get something wrong or miss something? Let me know."
