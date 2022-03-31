@@ -3079,7 +3079,7 @@ custom_fonts/font = SubResource( 29 )
 text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
-reddit.com/user/eat****nosleep69
+www.reddit.com/r/godot/
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -3102,7 +3102,7 @@ custom_fonts/font = SubResource( 29 )
 text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
-reddit.com/user/eat****nosleep69
+www.reddit.com/r/godot/
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -3591,7 +3591,8 @@ margin_top = 756.0
 margin_right = 1719.0
 margin_bottom = 1037.0
 custom_fonts/font = SubResource( 29 )
-text = "A technique created by eat****nosleep69 on reddit: By using a BackBufferCopy node with the Copy Mode set to Viewport, you can apply a shader that will turn the solid pixels of a texture into a mask that hides pixels on any children below the mask node that also reside within the BackBufferCopy node. "
+text = "https://www.reddit.com/r/godot/comments/o8pp6m/easy_way_to_mask_a_sprite_in_2d_differently_from/
+By using a BackBufferCopy node with the Copy Mode set to Viewport, you can apply a shader that will turn the solid pixels of a texture into a mask that hides pixels on any children below the mask node that also reside within the BackBufferCopy node. "
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
