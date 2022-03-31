@@ -3079,7 +3079,7 @@ custom_fonts/font = SubResource( 29 )
 text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
-reddit.com/user/eatshitnosleep69
+reddit.com/user/eat****nosleep69
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -3102,7 +3102,7 @@ custom_fonts/font = SubResource( 29 )
 text = "This is a collection of Godot 3.x techniques for masking in 2D. Some methods are pulled straight from the source, others have modifications. Sources of Note:
 youtube.com/c/Gdquest
 youtube.com/c/QuantumCode
-reddit.com/user/eatshitnosleep69
+reddit.com/user/eat****nosleep69
 reddit.com/user/golddotasksquestions
 @Visleaf on Twitter
 GodotShaders.com"
@@ -3950,6 +3950,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource( 51 )
 margin_right = 1929.0
 margin_bottom = 1087.0
