@@ -1,3 +1,4 @@
+//Adapted from GDQuest transition shader https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/transition.shader
 shader_type canvas_item;
 render_mode unshaded;
 
