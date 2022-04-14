@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=2]
+[gd_scene load_steps=142 format=2]
 
 [ext_resource path="res://Shaders/circle_mask.gdshader" type="Shader" id=1]
 [ext_resource path="res://Assets/GuideImages/BurstLines.png" type="Texture" id=2]
@@ -41,9 +41,11 @@
 [ext_resource path="res://Assets/GuideImages/mixandmatch.png" type="Texture" id=39]
 [ext_resource path="res://Assets/GuideMaskImages/ArrowMask2.png" type="Texture" id=40]
 [ext_resource path="res://Shaders/screen_mask.gdshader" type="Shader" id=41]
+[ext_resource path="res://Shaders/donut_mask.gdshader" type="Shader" id=42]
 [ext_resource path="res://Assets/GuideImages/LineBottomUp.png" type="Texture" id=43]
 [ext_resource path="res://Assets/GuideMaskImages/StarFilled_2.png" type="Texture" id=44]
 [ext_resource path="res://Assets/GuideImages/LineTopDown.png" type="Texture" id=45]
+[ext_resource path="res://Shaders/radial_mask.gdshader" type="Shader" id=46]
 [ext_resource path="res://Assets/GuideImages/ShaderDescLine.png" type="Texture" id=48]
 [ext_resource path="res://Assets/Godot.png" type="Texture" id=49]
 [ext_resource path="res://Assets/GuideImages/slice5.png" type="Texture" id=50]
@@ -2772,6 +2774,25 @@ shader_param/the_size = 1.0
 shader_param/wipe_direction = 1.0
 shader_param/wipe_axis_y = false
 
+[sub_resource type="ShaderMaterial" id=65]
+shader = ExtResource( 46 )
+shader_param/fill_ratio = 0.571
+shader_param/start_angle = 0.0
+shader_param/max_angle = 360.0
+shader_param/invert_fill = false
+shader_param/reflect_x = false
+shader_param/reflect_y = false
+shader_param/offset_x = 0.0
+shader_param/offset_y = 0.0
+
+[sub_resource type="ShaderMaterial" id=66]
+shader = ExtResource( 42 )
+shader_param/width = 0.457
+shader_param/gradient_ease = 0.0
+shader_param/fill_ratio = 0.605
+shader_param/x_direction = 1.0
+shader_param/y_direction = 1.0
+
 [sub_resource type="ShaderMaterial" id=33]
 shader = ExtResource( 33 )
 shader_param/rect_size = 3.055
@@ -2868,8 +2889,8 @@ shader_param/mask = ExtResource( 36 )
 
 [sub_resource type="ShaderMaterial" id=51]
 shader = ExtResource( 67 )
-shader_param/cutoff_one = 1.238
-shader_param/cutoff_two = 1.178
+shader_param/cutoff_one = -0.01
+shader_param/cutoff_two = 0.0
 shader_param/smooth_size = 0.17
 shader_param/invert_mask = false
 shader_param/masking_color = Color( 0, 0, 0, 1 )
@@ -2887,7 +2908,8 @@ anims/Step3 = SubResource( 50 )
 anims/Step4 = SubResource( 63 )
 
 [node name="Paper" type="Sprite" parent="."]
-position = Vector2( 962, 538 )
+position = Vector2( 962, 680 )
+scale = Vector2( 1, 1.24912 )
 texture = ExtResource( 31 )
 
 [node name="OpeningGraphics" type="Node2D" parent="."]
@@ -3140,6 +3162,58 @@ margin_right = 141.0
 margin_bottom = 21.0
 custom_fonts/font = SubResource( 29 )
 text = "BASIC WIPE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Radial" type="Node2D" parent="ShaderSection"]
+position = Vector2( 176, 1078 )
+
+[node name="TextureToMask" type="Sprite" parent="ShaderSection/Radial"]
+material = SubResource( 65 )
+position = Vector2( 0, 25 )
+texture = ExtResource( 85 )
+centered = false
+
+[node name="Border" type="Sprite" parent="ShaderSection/Radial"]
+position = Vector2( 0, 25 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Label" type="Label" parent="ShaderSection/Radial"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = -16.0
+margin_right = 141.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 29 )
+text = "RADIAL WIPE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Donut" type="Node2D" parent="ShaderSection"]
+position = Vector2( 571, 1077 )
+
+[node name="TextureToMask" type="Sprite" parent="ShaderSection/Donut"]
+material = SubResource( 66 )
+position = Vector2( 0, 25 )
+texture = ExtResource( 85 )
+centered = false
+
+[node name="Border" type="Sprite" parent="ShaderSection/Donut"]
+position = Vector2( 0, 25 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Label" type="Label" parent="ShaderSection/Donut"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = -16.0
+margin_right = 141.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 29 )
+text = "Donut
+"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3928,8 +4002,6 @@ __meta__ = {
 position = Vector2( 0, 32 )
 antialiased = true
 texture = ExtResource( 85 )
-texture_offset = Vector2( 50, 50 )
-texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( 11, 31, 60, 5, 121, 14, 195, 5, 275, 37, 321, 30, 334, 53, 325, 119, 328, 180, 300, 206, 233, 186, 196, 211, 134, 192, 80, 213, 20, 186, 7, 109 )
 
 [node name="ViewDescLine2" type="Sprite" parent="PolygonSection"]
@@ -3951,7 +4023,6 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource( 51 )
 margin_right = 1929.0
 margin_bottom = 1087.0
